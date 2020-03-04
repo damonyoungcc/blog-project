@@ -1,0 +1,24 @@
+
+.tooltip {
+  padding: 10px;
+  color: #fff;
+  position: absolute;
+  width: 250px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.hotel-add {
+  margin-bottom: 10px;
+}
+
+.person-table-btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 18px;
+  .table-btn-item {
+    cursor: pointer;
+  }
+}
