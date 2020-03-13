@@ -9,16 +9,19 @@ const {
   delete: del,
   login,
   checkOwner,
+  authAdmin,
+  getUserInfo,
 } = require('../controllers/users');
 const { secret } = require('../config');
 
 const auth = jwt({ secret });
 
-router.get('/', find);
-router.post('/', create);
-router.get('/:id', findById);
+router.post('/', create); // 新增用户
+router.get('/', auth, authAdmin, find); // 查询所有用户
+router.get('/:id', auth, findById); // 查询用户个人信息
 router.patch('/:id', auth, checkOwner, update);
-router.delete('/:id', auth, checkOwner, del);
+router.delete('/:id', auth, authAdmin, del);
 router.post('/login', login);
+router.get('/info', auth, getUserInfo);
 
 module.exports = router;
