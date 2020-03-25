@@ -9,7 +9,7 @@ const app = new Koa();
 const routing = require('./routes');
 const { connectionStr } = require('./config');
 
-mongoose.connect(connectionStr, { useNewUrlParser: true }, () =>
+mongoose.connect(connectionStr, { useUnifiedTopology: true, useNewUrlParser: true }, () =>
   console.log('MongoDB 连接成功了！'),
 );
 mongoose.connection.on('error', console.error);
@@ -33,4 +33,4 @@ app.use(
 app.use(parameter(app));
 routing(app);
 
-app.listen(3000, () => console.log('服务已启动在8888端口...'));
+app.listen(3000, () => console.log('服务已启动在8888端口...正在连接MongoDB数据库...'));

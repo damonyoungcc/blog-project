@@ -1,13 +1,13 @@
 {
-  "name": "zhihu-api",
+  "name": "blog-server",
   "version": "1.0.0",
-  "description": "防知乎 RESTful API",
+  "description": "校园博客发布系统后台",
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=production node app",
     "start": "nodemon app"
   },
-  "author": "lewis617",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "jsonwebtoken": "^8.5.1",
