@@ -33,14 +33,11 @@ class PrivateRoute extends Component {
 
 const mapStateToProps = (state, props) => {
   return {
-    userData: state.userData.data,
+    userData: state.userData,
   };
 };
 const mapDispatchToProps = (dispatch) => ({
   getUserAuth: () => dispatch(getUserAuth()),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(PrivateRoute);
+export default connect(mapStateToProps, mapDispatchToProps)(PrivateRoute);
