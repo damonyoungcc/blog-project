@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import './style.scss';
 import { connect } from 'react-redux';
 import { userLogin } from '../../store/login/actions';
+import ImageLogo from '../../images/logo.jpeg';
 
 class Login extends React.Component {
   constructor(props) {
@@ -63,7 +64,13 @@ class Login extends React.Component {
     return (
       <div>
         <div className="login-wrapper">
-          <div className="login-title">登 录</div>
+          <div className="login-title">
+            <img
+              src={ImageLogo}
+              alt=""
+              style={{ width: '100px', height: '100px', marginRight: '20px' }}
+            />
+          </div>
           <div className="login">
             <Form {...formItemLayout} onSubmit={this.handleSubmit} className="login-form">
               <Form.Item label="学号">
