@@ -1,4 +1,5 @@
 import React from 'react';
+import Layout from '../components/layout';
 import './style.scss';
 
 class Home extends React.Component {
@@ -11,9 +12,9 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>home</div>
-      </div>
+      <Layout>
+        <div>home1111</div>
+      </Layout>
     );
   }
 }

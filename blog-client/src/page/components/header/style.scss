@@ -1,0 +1,51 @@
+.header-nav {
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  .home-logo {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &:hover {
+      color: #000;
+    }
+  }
+  .nav-right {
+    display: flex;
+    .manage {
+      margin: 0 40px;
+      cursor: pointer;
+      color: rgba(0, 0, 0, 0.4);
+    }
+    .active {
+      color: #000;
+    }
+    .mine {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .icon-header {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        color: rgb(24, 144, 255);
+        .user-name {
+          margin-left: 5px;
+          font-size: 14px;
+        }
+        .icon-mine {
+          font-size: 22px;
+        }
+      }
+      .down {
+        margin-left: 5px;
+        font-size: 12px;
+        &:hover {
+          color: rgba(0, 0, 0, 0.4);
+        }
+      }
+    }
+  }
+}
