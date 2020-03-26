@@ -24,10 +24,7 @@ class Login extends React.Component {
   };
 
   render() {
-    const {
-      userData,
-      location: { state },
-    } = this.props;
+    const { userData } = this.props;
     const { isLogin } = userData || {};
     if (isLogin) {
       return <Redirect to="/" />;
