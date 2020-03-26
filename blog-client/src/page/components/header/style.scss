@@ -1,26 +1,37 @@
 .header-nav {
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 16px;
+  color: #314659;
   display: flex;
   justify-content: space-between;
   .home-logo {
     cursor: pointer;
     display: flex;
-    width: 30%;
+    width: 35%;
     justify-content: space-around;
     align-items: center;
-
+    .logo-text {
+      .logo-image {
+        transition: all 0.2s ease;
+        &:hover {
+          transform: translateX(-3px);
+        }
+      }
+    }
+    .home-tab-item {
+      height: 63px;
+      padding: 0 15px;
+      transition: all 0.3s ease;
+      &:hover {
+        color: #1890ff;
+      }
+    }
+    .active {
+      border-bottom: 2px solid #1890ff;
+      color: #1890ff;
+    }
   }
   .nav-right {
     display: flex;
-    .manage {
-      margin: 0 40px;
-      cursor: pointer;
-      color: rgba(0, 0, 0, 0.4);
-    }
-    .active {
-      color: #000;
-    }
     .mine {
       display: flex;
       justify-content: space-between;

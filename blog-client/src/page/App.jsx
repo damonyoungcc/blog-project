@@ -6,6 +6,7 @@ import Loading from './components/loading';
 
 const Home = lazy(() => import('./home'));
 const Sign = lazy(() => import('./sign'));
+const BBS = lazy(() => import('./bbs'));
 
 class App extends React.Component {
   render() {
@@ -19,8 +20,9 @@ class App extends React.Component {
           }
         >
           <Switch>
-            <PrivateRoute exact path="/" component={Home} />
             <Route exact path="/signin" component={Sign} />
+            <PrivateRoute exact path="/" component={Home} />
+            <PrivateRoute exact path="/bbs" component={BBS} />
           </Switch>
         </Suspense>
       </Router>
