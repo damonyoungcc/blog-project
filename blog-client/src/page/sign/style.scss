@@ -1,12 +1,61 @@
-.login-form {
-  padding-top: 50px;
-  width: 500px;
-  margin: 0 auto;
-  text-align: center;
+.login-wrapper {
+  height: 100%;
+  width: 400px;
+  margin: 100px auto;
+  border: 1px solid #ccc;
+  box-shadow: 1px 4px 13px #c1c1c1;
+  .login {
+    padding: 30px 20px;
+    .login-form-button {
+      width: 100%;
+      margin: 15px auto;
+    }
+    .ant-form-item {
+      margin-bottom: 30px;
+    }
+  }
+  .login-title {
+    margin-top: 30px;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }
 }
-.login-form-button {
-  width: 210px;
-}
-.item {
-  margin: 50px 0;
+.select-signup {
+  width: 700px;
+  margin: 70px auto;
+  .signup-header {
+    text-align: center;
+    height: 100px;
+    line-height: 100px;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .signup-content {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .signup-item {
+      width: 300px;
+      height: 200px;
+      border: 1px solid #ccc;
+      padding: 50px 10px;
+      text-align: center;
+      box-shadow: 1px 4px 13px #c1c1c1;
+      cursor: pointer;
+      .type {
+        color: #333;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      &:hover {
+        box-shadow: 3px 5px 17px #1c1c1c;
+      }
+    }
+  }
 }

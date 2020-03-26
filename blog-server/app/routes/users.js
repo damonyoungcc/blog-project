@@ -16,7 +16,7 @@ const { secret } = require('../config');
 
 const auth = jwt({ secret });
 
-router.get('/:id', auth, checkOwner, findById) // 根据id查询特定用户
+router.get('/info/:id', auth, checkOwner, findById) // 根据id查询特定用户
 router.patch('/:id', auth, checkOwner, update); // 修改用户资料
 router.post('/login', login); // 登录
 router.get('/info', auth, getUserInfo); // 获取用户登录态
