@@ -6,11 +6,10 @@
   .home-logo {
     cursor: pointer;
     display: flex;
-    justify-content: space-between;
+    width: 30%;
+    justify-content: space-around;
     align-items: center;
-    &:hover {
-      color: #000;
-    }
+
   }
   .nav-right {
     display: flex;

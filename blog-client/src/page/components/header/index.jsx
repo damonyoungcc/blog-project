@@ -4,7 +4,7 @@ import { Icon, Dropdown, Menu } from 'antd';
 import Util from '../../../js/Util';
 import history from '../../../js/history';
 import Api from '../../../js/Api';
-import ImageLogoText from '../../../images/logo-text.jpeg';
+// import ImageLogoText from '../../../images/logo-text.jpeg';
 
 class Layout extends React.Component {
   constructor(props) {
@@ -58,8 +58,10 @@ class Layout extends React.Component {
         <div className="home-logo">
           <div className="logo-text" onClick={() => this.goHome()}>
             {/* <img src={ImageLogoText} alt="" style={{height: '60px'}}/> */}
-            <div>校园论坛</div>
+            <div>LOGO</div>
           </div>
+          <div>校园论坛</div>
+          <div>校园新闻</div>
         </div>
         <div className="nav-right">
           <div className="mine">
