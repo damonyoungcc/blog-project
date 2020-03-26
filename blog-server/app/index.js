@@ -33,4 +33,4 @@ app.use(
 app.use(parameter(app));
 routing(app);
 
-app.listen(3000, () => console.log('服务已启动在8888端口...正在连接MongoDB数据库...'));
+app.listen(8888, () => console.log('服务已启动在8888端口...正在连接MongoDB数据库...'));

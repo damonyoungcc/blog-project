@@ -7,7 +7,7 @@ const userSchema = new Schema(
     __v: { type: Number, select: false },
     sid: { type: String, required: true },
     password: { type: String, required: true, select: false },
-    fullName: { type: String, required: true, select: false },
+    fullName: { type: String, required: true },
     nickName: { type: String, required: true },
   },
   { timestamps: true },
