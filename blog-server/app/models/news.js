@@ -10,7 +10,7 @@ const newsSchema = new Schema(
     origin: { type: String, required: true },
     author: { type: String, required: true },
     image: { type: String, required: false },
-    type: { type: String, required: false },
+    type: { type: String, required: true },
   },
   { timestamps: true },
 );
