@@ -34,12 +34,18 @@ class UsersCtl {
   // 更新用户资料
   async update(ctx) {
     ctx.verifyParams({
-      sid: { type: 'string', required: true },
-      password: { type: 'string', required: true },
-      fullName: { type: 'string', required: true },
-      nickName: { type: 'string', required: true },
+      sid: { type: 'string', required: false },
+      password: { type: 'string', required: false },
+      fullName: { type: 'string', required: false },
+      nickName: { type: 'string', required: false },
     });
-    const user = await User.findByIdAndUpdate(ctx.params.id, ctx.request.body);
+    const checkUser = User.findById(ctx.params.id);
+    const { nickName: nick } = checkUser || {};
+    if (nick === 'admin') {
+      ctx.throw(409, '超级管理员不可修改！');
+    }
+    const { nickName, password } = ctx.request.body;
+    const user = await User.findByIdAndUpdate(ctx.params.id, { nickName, password });
     if (!user) {
       ctx.throw(404, '用户不存在');
     }
