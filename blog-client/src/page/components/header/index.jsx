@@ -35,7 +35,7 @@ class Layout extends React.Component {
     window.location.reload('/');
   }
   goMineInfo() {
-    console.log('111');
+    history.push('/mine')
   }
   go(type) {
     if (type === 'bbs') {

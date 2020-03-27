@@ -8,6 +8,7 @@ const Home = lazy(() => import('./home'));
 const Sign = lazy(() => import('./sign'));
 const BBS = lazy(() => import('./bbs'));
 const NewsDetail = lazy(() => import('./news'));
+const Mine = lazy(() => import('./mine'));
 
 class App extends React.Component {
   render() {
@@ -25,6 +26,7 @@ class App extends React.Component {
             <PrivateRoute exact path="/" component={Home} />
             <PrivateRoute exact path="/bbs" component={BBS} />
             <PrivateRoute exact path="/news/:id" component={NewsDetail} />
+            <PrivateRoute exact path="/mine" component={Mine} />
           </Switch>
         </Suspense>
       </Router>
