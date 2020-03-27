@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table } from 'antd';
+import { Table, Tooltip, Icon } from 'antd';
 import Api from '../../../js/Api';
 import Util from '../../../js/Util';
 
@@ -56,6 +56,22 @@ class Students extends Component {
               dataIndex: 'fullName',
               key: 'fullName',
               align: 'center',
+            },
+            {
+              title: '操作',
+              key: '操作',
+              align: 'center',
+              render: (row, item) => (
+                <Tooltip placement="top" title={'删除'}>
+                  <Icon
+                    type="delete"
+                    theme="twoTone"
+                    twoToneColor="#eb2f96"
+                    className="table-btn-item"
+                    onClick={() => this.deleteEvent(item)}
+                  />
+                </Tooltip>
+              ),
             },
           ]}
         ></Table>
