@@ -22,3 +22,16 @@
     cursor: pointer;
   }
 }
+.news {
+  padding-top: 2px;
+  .news-type {
+    margin-top: 20px;
+    width: 80%;
+    .news-item {
+      cursor: pointer;
+      &:hover {
+        color: #1980ff;
+      }
+    }
+  }
+}
