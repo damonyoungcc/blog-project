@@ -4,7 +4,7 @@ import { Icon, Dropdown, Menu } from 'antd';
 import Util from '../../../js/Util';
 import history from '../../../js/history';
 import Api from '../../../js/Api';
-// import ImageLogoText from '../../../images/logo-text.jpeg';
+import ImageLogoText from '../../../images/logo-text.jpeg';
 
 class Layout extends React.Component {
   constructor(props) {
@@ -62,8 +62,8 @@ class Layout extends React.Component {
       <div className="header-nav">
         <div className="home-logo">
           <div className="logo-text">
-            {/* <img className="logo-image" src={ImageLogoText} alt="" style={{ height: '55px' }} /> */}
-            <div>LOGO</div>
+            <img className="logo-image" src={ImageLogoText} alt="" style={{ height: '55px' }} />
+            {/* <div>LOGO</div> */}
           </div>
           <div
             className={pathName === '/' ? 'home-tab-item active' : 'home-tab-item'}

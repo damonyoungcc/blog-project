@@ -8,6 +8,7 @@ import ImageBanner4 from '../../images/banner4.jpg';
 import './style.scss';
 import Api from '../../js/Api';
 import history from '../../js/history';
+import Util from '../../js/Util';
 const { TabPane } = Tabs;
 
 class Home extends React.Component {
@@ -46,7 +47,7 @@ class Home extends React.Component {
     });
   }
   goNewsDetail(element) {
-    history.push(`/news/${element._id}`)
+    history.push(`/news/${element._id}`);
   }
   render() {
     const imagesList = [ImageBanner1, ImageBanner2, ImageBanner3, ImageBanner4];
@@ -72,16 +73,26 @@ class Home extends React.Component {
                   {index === 0 ? (
                     <div>
                       {defaultNewsList.map((element) => (
-                        <div key={element._id} onClick={this.goNewsDetail.bind(this, element)} className="news-item">
-                          {element.title}
+                        <div
+                          key={element._id}
+                          onClick={this.goNewsDetail.bind(this, element)}
+                          className="news-item"
+                        >
+                          <span className="news-date">{Util.getDate(element.updatedAt)}</span>
+                          <span>{element.title}</span>
                         </div>
                       ))}
                     </div>
                   ) : (
                     <div>
                       {newsListByType.map((element) => (
-                        <div onClick={this.goNewsDetail.bind(this, element)} key={element._id} className="news-item">
-                          {element.title}
+                        <div
+                          onClick={this.goNewsDetail.bind(this, element)}
+                          key={element._id}
+                          className="news-item"
+                        >
+                          <span className="news-date">{Util.getDate(element.updatedAt)}</span>
+                          <span>{element.title}</span>
                         </div>
                       ))}
                     </div>
