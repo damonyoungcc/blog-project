@@ -10,6 +10,7 @@ import Api from '../../js/Api';
 import history from '../../js/history';
 import Util from '../../js/Util';
 const { TabPane } = Tabs;
+const token = Util.getToken();
 
 class Home extends React.Component {
   constructor(props) {
@@ -26,14 +27,14 @@ class Home extends React.Component {
     this.initNewsList();
   }
   initNewsType() {
-    Api.get('/type').then((res) => {
+    Api.get('/type', { headers: { Authorization: `Bearer ${token}` } }).then((res) => {
       this.setState({
         newsTypeList: res.data,
       });
     });
   }
   initNewsList() {
-    Api.get('/news').then((res) => {
+    Api.get('/news', { headers: { Authorization: `Bearer ${token}` } }).then((res) => {
       this.setState({
         newsList: res.data,
       });

@@ -4,6 +4,11 @@ import { Tabs } from 'antd';
 import Util from '../../js/Util';
 import Api from '../../js/Api';
 import './style.scss';
+import Students from './students';
+import News from './news';
+import Blog from './blog';
+import Personal from './personal';
+import Topic from './topic';
 const { TabPane } = Tabs;
 
 class Mine extends Component {
@@ -40,22 +45,22 @@ class Mine extends Component {
             {isAdmin ? (
               <Tabs defaultActiveKey="1">
                 <TabPane tab="学生管理" key="1">
-                  Content of Tab Pane 2
+                  <Students />
                 </TabPane>
                 <TabPane tab="信息发布管理" key="3">
-                  Content of Tab Pane 2
+                  <News />
                 </TabPane>
                 <TabPane tab="论坛管理" key="4">
-                  Content of Tab Pane 3
+                  <Blog />
                 </TabPane>
               </Tabs>
             ) : (
               <Tabs defaultActiveKey="1">
                 <TabPane tab="个人资料" key="1">
-                  Content of Tab Pane 1
+                  <Personal />
                 </TabPane>
                 <TabPane tab="我的帖子" key="2">
-                  Content of Tab Pane 1
+                  <Topic />
                 </TabPane>
               </Tabs>
             )}

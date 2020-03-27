@@ -30,12 +30,14 @@
       color: #1890ff;
     }
   }
-  .nav-right {
+  .mine-nav-right {
     display: flex;
     .mine {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      cursor: pointer;
+      color: #1890ff;
       .icon-header {
         display: flex;
         align-items: center;
