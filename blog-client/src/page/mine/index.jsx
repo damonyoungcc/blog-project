@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
+import Layout from '../components/layout';
 
 class Mine extends Component {
   render() {
-    return (
-      <div>
-        <div>
-          mine
-        </div>
-      </div>
-    );
+    return <div>personal</div>;
   }
 }
 

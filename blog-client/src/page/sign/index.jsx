@@ -24,10 +24,17 @@ class Login extends React.Component {
   };
 
   render() {
-    const { userData } = this.props;
+    const {
+      userData,
+      location: { state },
+    } = this.props;
     const { isLogin } = userData || {};
     if (isLogin) {
-      return <Redirect to="/" />;
+      if (state && state.from) {
+        return <Redirect to={state.from} />;
+      } else {
+        return <Redirect to="/" />;
+      }
     }
     const formItemLayout = {
       labelCol: {
