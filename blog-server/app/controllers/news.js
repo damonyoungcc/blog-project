@@ -23,7 +23,7 @@ class NewsCtl {
   }
   // 查询新闻列表 title模糊搜索
   async find(ctx) {
-    ctx.body = await News.find({ title: new RegExp(ctx.query.q) }).populate('newsType');
+    ctx.body = await News.find().populate('newsType').sort({updatedAt: -1});
   }
   // 根据id查询新闻详细
   async findById(ctx) {
