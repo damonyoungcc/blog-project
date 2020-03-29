@@ -83,8 +83,9 @@ class UsersCtl {
   }
   // 根据id删除某个特定用户
   async delete(ctx) {
-    const { nickName } = ctx.state.user;
-    if (nickName === 'admin') {
+    const deleteUser = await User.findById(ctx.params.id);
+    const { sid } = deleteUser || {};
+    if (sid === '0001') {
       ctx.throw(409, '不可删除管理员!');
     } else {
       const user = await User.findByIdAndRemove(ctx.params.id);

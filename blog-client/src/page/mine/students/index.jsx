@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Table, Tooltip, Icon } from 'antd';
+import { Table, Tooltip, Icon, Modal, message } from 'antd';
 import Api from '../../../js/Api';
 import Util from '../../../js/Util';
-
+const { confirm } = Modal;
 const token = Util.getToken();
 
 class Students extends Component {
@@ -24,6 +24,31 @@ class Students extends Component {
     });
   }
 
+  deleteEvent = (item) => {
+    confirm({
+      title: '确定删除？',
+      content: '此操作将删除该用户的相关信息！',
+      okText: '确定',
+      okType: 'danger',
+      cancelText: '取消',
+      onOk() {
+        const postUrl = `/users/${item._id}`;
+        Api.delete(postUrl, {
+          headers: { Authorization: `Bearer ${token}` },
+        }).then((res) => {
+          if (res.data) {
+            message.success('删除成功');
+            this.initStudents();
+          } else {
+            message.error('删除失败，请重试');
+          }
+        });
+      },
+      onCancel() {
+        console.log('Cancel');
+      },
+    });
+  };
   render() {
     const { tableData } = this.state;
     return (
