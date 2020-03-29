@@ -35,10 +35,11 @@ class Students extends Component {
           rowKey={(row) => row._id}
           columns={[
             {
-              title: 'ID',
-              dataIndex: '_id',
-              key: '_id',
+              title: '序号',
+              dataIndex: 'index',
+              key: 'index',
               align: 'center',
+              render: (row, item, index) => index + 1,
             },
             {
               title: '标题',
