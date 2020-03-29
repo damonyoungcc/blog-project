@@ -9,8 +9,10 @@ const app = new Koa();
 const routing = require('./routes');
 const { connectionStr } = require('./config');
 
-mongoose.connect(connectionStr, { useUnifiedTopology: true, useNewUrlParser: true }, () =>
-  console.log('MongoDB 连接成功了！'),
+mongoose.connect(
+  connectionStr,
+  { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false },
+  () => console.log('MongoDB 连接成功了！'),
 );
 mongoose.connection.on('error', console.error);
 

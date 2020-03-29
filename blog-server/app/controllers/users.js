@@ -92,7 +92,7 @@ class UsersCtl {
       if (!user) {
         ctx.throw(404, '用户不存在');
       }
-      ctx.status = 204;
+      ctx.body = user;
     }
   }
 

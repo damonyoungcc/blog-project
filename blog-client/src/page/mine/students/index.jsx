@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Table, Tooltip, Icon, Modal, message } from 'antd';
+import { Table, Tooltip, Icon, Modal, message, Button } from 'antd';
 import Api from '../../../js/Api';
 import Util from '../../../js/Util';
+import AddStudents from './add-students';
+import './style.scss';
 const { confirm } = Modal;
 const token = Util.getToken();
 
@@ -10,6 +12,7 @@ class Students extends Component {
     super(props);
     this.state = {
       tableData: [],
+      isShowModal: false,
     };
   }
 
@@ -25,6 +28,7 @@ class Students extends Component {
   }
 
   deleteEvent = (item) => {
+    const _this = this;
     confirm({
       title: '确定删除？',
       content: '此操作将删除该用户的相关信息！',
@@ -38,7 +42,7 @@ class Students extends Component {
         }).then((res) => {
           if (res.data) {
             message.success('删除成功');
-            this.initStudents();
+            _this.initStudents();
           } else {
             message.error('删除失败，请重试');
           }
@@ -49,10 +53,34 @@ class Students extends Component {
       },
     });
   };
+
+  onOk() {
+    const { isShowModal } = this.state;
+    this.setState(
+      {
+        isShowModal: !isShowModal,
+      },
+      () => {
+        this.initStudents();
+      },
+    );
+  }
+
+  addStudents() {
+    this.setState({
+      isShowModal: true,
+    });
+  }
+
   render() {
-    const { tableData } = this.state;
+    const { tableData, isShowModal } = this.state;
     return (
       <div>
+        <div>
+          <Button type="primary" className="add-students" onClick={this.addStudents.bind(this)}>
+            添加学生
+          </Button>
+        </div>
         <Table
           bordered
           dataSource={tableData}
@@ -101,6 +129,12 @@ class Students extends Component {
             },
           ]}
         ></Table>
+        <AddStudents
+          title="添加学生"
+          visible={isShowModal}
+          onOk={() => this.onOk()}
+          onCancel={() => this.setState({ isShowModal: !isShowModal })}
+        />
       </div>
     );
   }
