@@ -2,7 +2,7 @@ const jwt = require('koa-jwt');
 const Router = require('koa-router');
 const router = new Router({ prefix: '/api/news' });
 const { authAdmin } = require('../controllers/users');
-const { find, create, update, findById } = require('../controllers/news');
+const { find, create, update, findById, delete: del } = require('../controllers/news');
 const { secret } = require('../config');
 
 const auth = jwt({ secret });
@@ -12,5 +12,6 @@ router.post('/', auth, authAdmin, create); // 新增新闻
 router.get('/', auth, find); // 根据新闻类型查询所有新闻
 router.get('/:id', auth, findById);
 router.patch('/:id', auth, authAdmin, update); // 根据id更新新闻
+router.delete('/:id', auth, authAdmin, del); // 根据id删除新闻
 
 module.exports = router;

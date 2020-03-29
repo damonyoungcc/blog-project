@@ -23,7 +23,9 @@ class NewsCtl {
   }
   // 查询新闻列表 title模糊搜索
   async find(ctx) {
-    ctx.body = await News.find().populate('newsType').sort({updatedAt: -1});
+    ctx.body = await News.find()
+      .populate('newsType')
+      .sort({ updatedAt: -1 });
   }
   // 根据id查询新闻详细
   async findById(ctx) {
@@ -46,6 +48,14 @@ class NewsCtl {
       newsType: { type: 'string', required: true },
     });
     const news = await News.findByIdAndUpdate(ctx.params.id, ctx.request.body);
+    if (!news) {
+      ctx.throw(404, '新闻不存在！');
+    }
+    ctx.body = news;
+  }
+
+  async delete(ctx) {
+    const news = await News.findByIdAndRemove(ctx.params.id);
     if (!news) {
       ctx.throw(404, '新闻不存在！');
     }
