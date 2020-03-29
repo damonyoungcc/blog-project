@@ -16,6 +16,7 @@ class Students extends Component {
       tableData: [],
       formData: {},
       isShowModal: false,
+      type: '',
     };
   }
 
@@ -59,11 +60,21 @@ class Students extends Component {
     this.setState({
       isShowModal: true,
       formData: item,
+      type,
     });
   }
-  onOk = () => {};
+  onOk = () => {
+    this.setState(
+      {
+        isShowModal: false,
+      },
+      () => {
+        this.initNews();
+      },
+    );
+  };
   render() {
-    const { tableData, formData, isShowModal } = this.state;
+    const { tableData, formData, isShowModal, type } = this.state;
     return (
       <div>
         <Button type="primary" className="add-news" onClick={this.handleNews.bind(this, 'add')}>
@@ -136,7 +147,7 @@ class Students extends Component {
         ></Table>
         <HandleNews
           formData={formData}
-          title="添加学生"
+          title={type}
           visible={isShowModal}
           onOk={() => this.onOk()}
           onCancel={() => this.setState({ isShowModal: !isShowModal })}

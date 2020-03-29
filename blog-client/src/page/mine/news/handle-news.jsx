@@ -27,20 +27,18 @@ class HandeNews extends Component {
   }
 
   handleOk = () => {
-    const { form, title } = this.props;
+    const { form, title, formData, onOk } = this.props;
     const token = Util.getToken();
     form.validateFields((err, values) => {
+      const postUrl = title === 'add' ? '/news' : `/news/${formData._id}`;
+      const method = title === 'add' ? 'post' : 'patch';
+      console.log(postUrl, method);
       if (!err) {
-        const emergency_services = values.emergency_services ? 'true' : 'false';
-        values.emergency_services = emergency_services;
-        const postUrl = title === 'Add' ? '/hospitals' : `/hospitals/id/${values.provider_id}`;
-        (title === 'Add' ? Api.post : Api.put)(postUrl, values, {
+        Api[method](postUrl, values, {
           headers: { Authorization: `Bearer ${token}` },
         }).then((res) => {
-          if (res.data) {
-            message.success('success!');
-            this.props.onOk();
-          }
+          message.success(`${title === 'add' ? '新增' : '更新'}成功！`);
+          onOk();
         });
       }
     });
@@ -51,7 +49,6 @@ class HandeNews extends Component {
   render() {
     const { title, form, formData } = this.props;
     const { newsTypeList } = this.state;
-    console.log(formData);
     const { getFieldDecorator } = form;
     const formItemLayout = {
       labelCol: {
@@ -65,7 +62,9 @@ class HandeNews extends Component {
     };
     return (
       <Modal
-        title={`${title} Hospital`}
+        title={`${title === 'add' ? '新增' : '编辑'}信息`}
+        cancelText="取消"
+        okText="确定"
         visible={this.props.visible}
         onOk={this.handleOk}
         onCancel={this.handleCancel}
@@ -97,7 +96,7 @@ class HandeNews extends Component {
             })(<Input placeholder="请输入作者" />)}
           </Form.Item>
           <Form.Item label="新闻类型">
-            {getFieldDecorator('新闻类型', {
+            {getFieldDecorator('newsType', {
               initialValue: ((formData || {}).newsType || {})._id,
               rules: [
                 {
