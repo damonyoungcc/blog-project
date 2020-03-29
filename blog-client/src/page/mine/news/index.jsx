@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { Table, Tooltip, Divider, Icon } from 'antd';
+import { Table, Tooltip, Divider, Icon, Button, Modal, message } from 'antd';
+import HandleNews from './handle-news';
 import Api from '../../../js/Api';
 import Util from '../../../js/Util';
+import './style.scss';
 
+const { confirm } = Modal;
 const { Fragment } = React;
 const token = Util.getToken();
 
@@ -11,24 +14,61 @@ class Students extends Component {
     super(props);
     this.state = {
       tableData: [],
+      formData: {},
+      isShowModal: false,
     };
   }
 
   componentDidMount() {
-    this.initStudents();
+    this.initNews();
   }
-  initStudents() {
+  initNews() {
     Api.get('/news', { headers: { Authorization: `Bearer ${token}` } }).then((res) => {
       this.setState({
         tableData: res.data,
       });
     });
   }
-
+  deleteNews(item) {
+    const _this = this;
+    confirm({
+      title: '确定删除？',
+      content: '此操作将删除此条信息！',
+      okText: '确定',
+      okType: 'danger',
+      cancelText: '取消',
+      onOk() {
+        const postUrl = `/news/${item._id}`;
+        Api.delete(postUrl, {
+          headers: { Authorization: `Bearer ${token}` },
+        }).then((res) => {
+          if (res.data) {
+            message.success('删除成功');
+            _this.initNews();
+          } else {
+            message.error('删除失败，请重试');
+          }
+        });
+      },
+      onCancel() {
+        console.log('Cancel');
+      },
+    });
+  }
+  handleNews(type, item = {}) {
+    this.setState({
+      isShowModal: true,
+      formData: item,
+    });
+  }
+  onOk = () => {};
   render() {
-    const { tableData } = this.state;
+    const { tableData, formData, isShowModal } = this.state;
     return (
       <div>
+        <Button type="primary" className="add-news" onClick={this.handleNews.bind(this, 'add')}>
+          发布新信息
+        </Button>
         <Table
           bordered
           dataSource={tableData}
@@ -75,7 +115,7 @@ class Students extends Component {
                   <Tooltip
                     placement="top"
                     title={'编辑'}
-                    onClick={() => this.showModal('编辑', item, 'edit')}
+                    onClick={this.handleNews.bind(this, 'edit', item)}
                   >
                     <Icon type="edit" theme="twoTone" className="edit-btn table-btn-item" />
                   </Tooltip>
@@ -86,7 +126,7 @@ class Students extends Component {
                       theme="twoTone"
                       twoToneColor="#eb2f96"
                       className="table-btn-item"
-                      onClick={() => this.deleteEvent(item)}
+                      onClick={() => this.deleteNews(item)}
                     />
                   </Tooltip>
                 </Fragment>
@@ -94,6 +134,13 @@ class Students extends Component {
             },
           ]}
         ></Table>
+        <HandleNews
+          formData={formData}
+          title="添加学生"
+          visible={isShowModal}
+          onOk={() => this.onOk()}
+          onCancel={() => this.setState({ isShowModal: !isShowModal })}
+        />
       </div>
     );
   }

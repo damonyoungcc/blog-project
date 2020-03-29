@@ -6,7 +6,7 @@ const token = Util.getToken();
 
 class AddStudents extends Component {
   handleOk = () => {
-    const { title, form } = this.props;
+    const { form } = this.props;
     form.validateFields((err, values) => {
       if (!err) {
         Api.post('/users', values, {
