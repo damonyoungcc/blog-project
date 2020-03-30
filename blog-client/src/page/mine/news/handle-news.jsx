@@ -4,6 +4,7 @@ import Api from '../../../js/Api';
 import Util from '../../../js/Util';
 const { TextArea } = Input;
 const { Option } = Select;
+const token = Util.getToken();
 
 class HandeNews extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class HandeNews extends Component {
   }
 
   initNewsTypeList() {
-    Api.get('/type').then((res) => {
+    Api.get('/type', { headers: { Authorization: `Bearer ${token}` } }).then((res) => {
       if (res) {
         this.setState({
           newsTypeList: res.data,
@@ -32,7 +33,6 @@ class HandeNews extends Component {
     form.validateFields((err, values) => {
       const postUrl = title === 'add' ? '/news' : `/news/${formData._id}`;
       const method = title === 'add' ? 'post' : 'patch';
-      console.log(postUrl, method);
       if (!err) {
         Api[method](postUrl, values, {
           headers: { Authorization: `Bearer ${token}` },

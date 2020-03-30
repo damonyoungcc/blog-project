@@ -21,6 +21,12 @@ const Util = {
       .local()
       .format('YYYY-MM-DD HH:MM:SS');
   },
+  getTime(params = '') {
+    return moment
+      .parseZone(params)
+      .local()
+      .format('MM-DD HH:MM');
+  },
 };
 
 export default Util;
