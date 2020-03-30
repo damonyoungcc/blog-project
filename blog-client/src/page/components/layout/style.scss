@@ -25,11 +25,10 @@ ul ol {
   }
   .footer {
     background: #f0f3f5;
-    height: 50px;
-    line-height: 50px;
   }
   .footer-content {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
   }
 }
