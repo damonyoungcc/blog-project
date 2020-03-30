@@ -32,19 +32,20 @@ class Personal extends Component {
     e.preventDefault();
     form.validateFields((err, values) => {
       if (!err) {
-        const {password, confirmPassword} = values;
-        if(password === confirmPassword) {
-          Api.patch(`/users/${_id}`, values, { headers: { Authorization: `Bearer ${token}` } }).then(
-            (res) => {
-              if (res) {
-                message.success('更新成功，请重新登录！');
+        const { password, confirmPassword } = values;
+        if (password === confirmPassword) {
+          Api.patch(`/users/${_id}`, values, {
+            headers: { Authorization: `Bearer ${token}` },
+          }).then((res) => {
+            if (res) {
+              message.success('更新成功，请重新登录！', 1, () => {
                 Util.setToken('');
                 window.location.reload('/');
-              }
-            },
-          );
+              });
+            }
+          });
         } else {
-          message.error('两次输入不一致！')
+          message.error('两次输入不一致！');
         }
       }
     });
