@@ -3,7 +3,7 @@ import Layout from '../components/layout';
 import Api from '../../js/Api';
 import Util from '../../js/Util';
 import ImageTopic from '../../images/topic-image.jpeg';
-import { Icon } from 'antd';
+import { Icon, Popover } from 'antd';
 import './style.scss';
 const token = Util.getToken();
 
@@ -60,9 +60,18 @@ class BBS extends React.Component {
                 </div>
                 <div className="poster">
                   <Icon type="user"></Icon>
-                  <span style={{ marginLeft: '3px', cursor: 'pointer' }}>
-                    {(item || {}).poster.nickName}
-                  </span>
+                  <Popover
+                    content={
+                      <div>
+                        <p>学号：{(item || {}).poster.sid}</p>
+                      </div>
+                    }
+                    title={`用户名：${(item || {}).poster.nickName}`}
+                  >
+                    <span style={{ marginLeft: '3px', cursor: 'pointer' }}>
+                      {(item || {}).poster.nickName}
+                    </span>
+                  </Popover>
                 </div>
                 <div className="time">{Util.getTime(item.updatedAt)}</div>
               </div>
