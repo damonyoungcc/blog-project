@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Icon, Input, Button, message } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 import Api from '../../../js/Api';
 import Util from '../../../js/Util';
 import './style.scss';
@@ -32,14 +32,20 @@ class Personal extends Component {
     e.preventDefault();
     form.validateFields((err, values) => {
       if (!err) {
-        Api.patch(`/users/${_id}`, values, { headers: { Authorization: `Bearer ${token}` } }).then(
-          (res) => {
-            if (res) {
-              message.success('更新成功！');
-              this.initUserInfo();
-            }
-          },
-        );
+        const {password, confirmPassword} = values;
+        if(password === confirmPassword) {
+          Api.patch(`/users/${_id}`, values, { headers: { Authorization: `Bearer ${token}` } }).then(
+            (res) => {
+              if (res) {
+                message.success('更新成功，请重新登录！');
+                Util.setToken('');
+                window.location.reload('/');
+              }
+            },
+          );
+        } else {
+          message.error('两次输入不一致！')
+        }
       }
     });
   };
