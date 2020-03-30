@@ -56,7 +56,7 @@ class Layout extends React.Component {
           <div className="home-tab-item" onClick={this.go.bind(this, 'news')}>
             首页
           </div>
-          <div className="home-tab-item active">个人中心</div>
+          <div className="home-tab-item active">{this.props.activeTab}</div>
         </div>
         <div className="mine-nav-right">
           <div className="mine">

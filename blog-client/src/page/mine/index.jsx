@@ -40,7 +40,7 @@ class Mine extends Component {
     const { isAdmin } = this.state;
     return (
       <div>
-        <MineLayout>
+        <MineLayout activeTab="个人中心">
           <div className="mine-content">
             {isAdmin ? (
               <Tabs defaultActiveKey="1">
