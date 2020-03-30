@@ -3,6 +3,7 @@ import Api from '../../js/Api';
 import Util from '../../js/Util';
 import MineLayout from '../components/mine-layout';
 import './style.scss';
+const token = Util.getToken();
 
 class News extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class News extends Component {
   }
 
   initNewsDetail(id) {
-    Api.get(`/news/${id}`).then((res) => {
+    Api.get(`/news/${id}`, { headers: { Authorization: `Bearer ${token}` } }).then((res) => {
       this.setState({
         newsDetail: res.data,
       });
@@ -46,9 +47,7 @@ class News extends Component {
               <span>信息来源：{origin || '--'}</span>
               <span>日期：{Util.getDateAndTime(updatedAt) || '--'}</span>
             </div>
-            <div className="main-content">
-              {content}
-            </div>
+            <div className="main-content">{content}</div>
           </div>
         </div>
       </MineLayout>
