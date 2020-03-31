@@ -27,6 +27,9 @@ const Util = {
       .local()
       .format('MM-DD HH:MM');
   },
+  getBaseUrl(url) {
+    return `http://localhost:8888${url}`;
+  },
 };
 
 export default Util;
