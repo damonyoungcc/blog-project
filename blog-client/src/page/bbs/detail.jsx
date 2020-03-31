@@ -70,7 +70,7 @@ class BBSDetail extends Component {
                   }
                   title={`用户名：${(poster || {}).nickName}`}
                 >
-                  <div>
+                  <div style={{ cursor: 'pointer' }}>
                     <img style={{ width: '100px', marginTop: '30px' }} src={ImageIcon} alt="" />
                     <div style={{ color: '#2d64b3', marginTop: '5px' }}>
                       {(poster || {}).nickName}
@@ -86,7 +86,7 @@ class BBSDetail extends Component {
                   alt=""
                 />
                 <div className="yilou">
-                  1楼 {Util.getDateAndTime(createdAt)} <span className="reply">回复</span>
+                  1楼 {Util.getTime(createdAt)} <span className="reply">回复</span>
                 </div>
               </div>
             </div>
