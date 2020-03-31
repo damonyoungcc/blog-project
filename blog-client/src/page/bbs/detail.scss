@@ -1,0 +1,98 @@
+.topics-detail {
+  width: 980px;
+  margin: 20px auto;
+  .topics-header {
+    border: 1px solid #dbdce0;
+    height: 48px;
+    color: #333;
+    background: linear-gradient(to bottom, #eeeff3 0, #eaeef1 100%);
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    div {
+      width: 76px;
+      height: 48px;
+      line-height: 48px;
+      text-align: center;
+    }
+    .active {
+      background-color: #ccc;
+    }
+  }
+  .detail-title {
+    height: 60px;
+    line-height: 60px;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h3 {
+      font-weight: 400;
+      font-size: 16px;
+    }
+    .detail-reply {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      div {
+        height: 30px;
+        line-height: 30px;
+        padding: 0 10px;
+        margin: 0 10px;
+        border: 1px solid #c1c1c1;
+        border-radius: 2px;
+      }
+      .real-reply {
+        cursor: pointer;
+        &:hover {
+          border: 1px solid #1890ff;
+          color: #1890ff;
+        }
+      }
+    }
+  }
+  .topics-detail {
+    margin: 0;
+    border: 1px solid #dbdce0;
+    border-top: 1px solid rgb(161, 161, 161);
+    .content-item {
+      display: flex;
+      min-height: 200px;
+      border-bottom: 1px solid #dbdce0;
+      .poster {
+        width: 130px;
+        background-color: #eaeef1;
+        padding-top: 20px;
+        position: relative;
+        text-align: center;
+        .louzhu-icon {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 36px;
+          height: 36px;
+          background: url('../../images/louzhu.png') no-repeat -44px 0;
+        }
+      }
+      .content {
+        padding: 20px 0 0 20px;
+        flex: 1;
+        .yilou {
+          font-size: 12px;
+          text-align: right;
+          padding-right: 100px;
+          .reply {
+            color: #2d64b3;
+            cursor: pointer;
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+    .topic-item-origin {
+      min-height: 300px;
+    }
+  }
+}
