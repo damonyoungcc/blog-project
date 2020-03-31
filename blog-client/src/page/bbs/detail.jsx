@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import MineLayout from '../components/mine-layout';
 import Api from '../../js/Api';
 import Util from '../../js/Util';
-import ImageTopic from '../../images/topic-image.jpeg';
 import { Icon, Popover } from 'antd';
 import history from '../../js/history';
 import ImageIcon from '../../images/icon.png';
@@ -62,8 +61,22 @@ class BBSDetail extends Component {
             <div className="topic-item-origin content-item">
               <div className="poster">
                 <div className="louzhu-icon"></div>
-                <img style={{ width: '100px', marginTop: '30px' }} src={ImageIcon} alt="" />
-                <div style={{ color: '#2d64b3', marginTop: '5px' }}>{(poster || {}).nickName}</div>
+                <Popover
+                  placement="left"
+                  content={
+                    <div>
+                      <p>学号：{(poster || {}).sid}</p>
+                    </div>
+                  }
+                  title={`用户名：${(poster || {}).nickName}`}
+                >
+                  <div>
+                    <img style={{ width: '100px', marginTop: '30px' }} src={ImageIcon} alt="" />
+                    <div style={{ color: '#2d64b3', marginTop: '5px' }}>
+                      {(poster || {}).nickName}
+                    </div>
+                  </div>
+                </Popover>
               </div>
               <div className="content">
                 <div>{content}</div>
