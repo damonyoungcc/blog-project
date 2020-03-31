@@ -79,7 +79,11 @@
       .content {
         padding: 20px 0 0 20px;
         flex: 1;
+        position: relative;
         .yilou {
+          position: absolute;
+          bottom: 10px;
+          right: 0;
           font-size: 12px;
           text-align: right;
           padding-right: 100px;

@@ -17,7 +17,6 @@ class BBSDetail extends Component {
   }
   componentDidMount() {
     const { match } = this.props || {};
-
     const {
       params: { id },
     } = match || {};
