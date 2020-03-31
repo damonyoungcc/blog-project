@@ -102,11 +102,9 @@ class Students extends Component {
               align: 'center',
               render: (row, item) => (
                 <Fragment>
-                  <Tooltip placement="top" title={'删除'}>
+                  <Tooltip placement="top" title={'查看帖子详情'}>
                     <Icon
-                      type="delete"
-                      theme="twoTone"
-                      twoToneColor="#eb2f96"
+                      type="profile"
                       className="table-btn-item"
                       onClick={() => this.deleteNews(item)}
                     />
