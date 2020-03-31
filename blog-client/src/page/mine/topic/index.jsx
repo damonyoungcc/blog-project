@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import { Table, Tooltip, Icon, Button, Modal, message } from 'antd';
+import { Table, Tooltip, Icon, Button } from 'antd';
 import AddTopic from './add-topic';
 import Api from '../../../js/Api';
 import Util from '../../../js/Util';
 import './style.scss';
 
-const { confirm } = Modal;
 const { Fragment } = React;
 const token = Util.getToken();
 
-class Students extends Component {
+class Topics extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,41 +19,20 @@ class Students extends Component {
   }
 
   componentDidMount() {
-    this.initNews();
+    this.initTopics();
   }
-  initNews() {
+  initTopics() {
     Api.get('/users/topics/list', { headers: { Authorization: `Bearer ${token}` } }).then((res) => {
       this.setState({
         tableData: res.data,
       });
     });
   }
-  deleteNews(item) {
-    const _this = this;
-    confirm({
-      title: '确定删除？',
-      content: '此操作将删除此条信息！',
-      okText: '确定',
-      okType: 'danger',
-      cancelText: '取消',
-      onOk() {
-        const postUrl = `/news/${item._id}`;
-        Api.delete(postUrl, {
-          headers: { Authorization: `Bearer ${token}` },
-        }).then((res) => {
-          if (res.data) {
-            message.success('删除成功');
-            _this.initNews();
-          } else {
-            message.error('删除失败，请重试');
-          }
-        });
-      },
-      onCancel() {
-        console.log('Cancel');
-      },
-    });
+
+  goToTopicDetail(item) {
+    console.log(item);
   }
+
   handleNews(type) {
     this.setState({
       isShowModal: true,
@@ -106,7 +84,7 @@ class Students extends Component {
                     <Icon
                       type="profile"
                       className="table-btn-item"
-                      onClick={() => this.deleteNews(item)}
+                      onClick={() => this.goToTopicDetail(item)}
                     />
                   </Tooltip>
                 </Fragment>
@@ -125,4 +103,4 @@ class Students extends Component {
   }
 }
 
-export default Students;
+export default Topics;
