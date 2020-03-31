@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Table, Tooltip, Icon, Modal, message, Divider } from 'antd';
 import Api from '../../../js/Api';
 import Util from '../../../js/Util';
+import history from '../../../js/history';
 import './style.scss';
 
 const { confirm } = Modal;
@@ -55,7 +56,7 @@ class Blog extends Component {
     });
   }
   goDetailTopic(item) {
-    console.log(item);
+    history.push(`/bbs/${item._id}`);
   }
 
   render() {

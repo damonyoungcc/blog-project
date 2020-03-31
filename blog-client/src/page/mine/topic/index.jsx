@@ -3,6 +3,7 @@ import { Table, Tooltip, Icon, Button } from 'antd';
 import AddTopic from './add-topic';
 import Api from '../../../js/Api';
 import Util from '../../../js/Util';
+import history from '../../../js/history';
 import './style.scss';
 
 const { Fragment } = React;
@@ -30,7 +31,7 @@ class Topics extends Component {
   }
 
   goToTopicDetail(item) {
-    console.log(item);
+    history.push(`/bbs/${item._id}`)
   }
 
   handleNews(type) {

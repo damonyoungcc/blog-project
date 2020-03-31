@@ -4,6 +4,7 @@ import Api from '../../js/Api';
 import Util from '../../js/Util';
 import ImageTopic from '../../images/topic-image.jpeg';
 import { Icon, Popover } from 'antd';
+import history from '../../js/history';
 import './style.scss';
 const token = Util.getToken();
 
@@ -28,6 +29,9 @@ class BBS extends React.Component {
       }
     });
   }
+  goDetailTopic(item) {
+    history.push(`/bbs/${item._id}`)
+  }
 
   render() {
     const { topicsList } = this.state;
@@ -49,7 +53,9 @@ class BBS extends React.Component {
                   <div className="comment-wrapper">{(item || {}).commentNum || '187'}</div>
                 </div>
                 <div className="title">
-                  <div>{item.title}</div>
+                  <div>
+                    <span onClick={this.goDetailTopic.bind(this, item)}>{item.title}</span>{' '}
+                  </div>
                   <div
                     className="title-image"
                     style={{
