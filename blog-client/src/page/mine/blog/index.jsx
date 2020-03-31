@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Tooltip, Icon, Modal, message } from 'antd';
+import { Table, Tooltip, Icon, Modal, message, Divider } from 'antd';
 import Api from '../../../js/Api';
 import Util from '../../../js/Util';
 import './style.scss';
@@ -54,6 +54,9 @@ class Blog extends Component {
       },
     });
   }
+  goDetailTopic(item) {
+    console.log(item);
+  }
 
   render() {
     const { tableData } = this.state;
@@ -98,6 +101,14 @@ class Blog extends Component {
                       className="table-btn-item"
                       onClick={() => this.deleteTopic(item)}
                     />
+                  </Tooltip>
+                  <Divider type="vertical" />
+                  <Tooltip
+                    placement="top"
+                    title={'查看帖子详情'}
+                    onClick={this.goDetailTopic.bind(this, item)}
+                  >
+                    <Icon type="profile" className="table-btn-item" />
                   </Tooltip>
                 </Fragment>
               ),
