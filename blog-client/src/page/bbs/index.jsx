@@ -53,7 +53,8 @@ class BBS extends React.Component {
                   <div
                     className="title-image"
                     style={{
-                      background: `url(${ImageTopic}) center no-repeat`,
+                      background: `url(${Util.getBaseUrl((item || {}).image) ||
+                        ImageTopic}) center no-repeat`,
                       backgroundSize: 'cover',
                     }}
                   ></div>
