@@ -190,12 +190,12 @@ class BBSDetail extends Component {
                   {isShowReply[index] ? (
                     <div>
                       {replyList[`${index}`].map((element, indexq) => (
-                        <div key={indexq} style={{borderBottom:'1px soid #c1c1c1'}}>
+                        <div key={indexq} style={{borderBottom:'1px solid #c1c1c1'}}>
                           <span style={{ color: '#2d64b3', marginRight: '5px' }}>
                             {element.commentator.nickName}：
                           </span>
                           <span>{element.content}</span>
-                          <span style={{ marginLeft: '5px' }}>
+                          <span style={{ marginLeft: '15px' }}>
                             {Util.getTime(element.createdAt)}
                           </span>
                         </div>
