@@ -18,6 +18,8 @@ class BBSDetail extends Component {
       isShowModal: false,
       formData: {},
       type: '',
+      isShowReply: {},
+      replyList: {},
     };
   }
   componentDidMount() {
@@ -27,7 +29,6 @@ class BBSDetail extends Component {
     } = match || {};
     this.initTopic(id);
     this.initComment(id);
-    this.initReplyComment(id);
   }
   initTopic(id) {
     Api.get(`/topics/${id}`, { headers: { Authorization: `Bearer ${token}` } }).then((res) => {
@@ -43,15 +44,6 @@ class BBSDetail extends Component {
       });
     });
   }
-  initReplyComment(id) {
-    const rootCommentId = '5e843e67f567a73777fbc72a';
-    Api.get(`/comment/${id}/${rootCommentId}`, { headers: { Authorization: `Bearer ${token}` } }).then(
-      (res) => {
-        console.log(res.data);
-      },
-    );
-  }
-
   commentTopic(topicDetail) {
     this.setState({
       isShowModal: true,
@@ -84,8 +76,35 @@ class BBSDetail extends Component {
     );
   };
 
+  showReply(item, index) {
+    const { match } = this.props || {};
+    const {
+      params: { id },
+    } = match || {};
+    const { isShowReply, replyList } = this.state;
+    const { _id } = item;
+    isShowReply[`${index}`] = true;
+    Api.get(`/comment/${id}/${_id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    }).then((res) => {
+      replyList[`${index}`] = res.data;
+      this.setState({
+        isShowReply,
+        replyList,
+      });
+    });
+  }
   render() {
-    const { topicDetail, isShowModal, formData, type, commentList } = this.state;
+    const {
+      topicDetail,
+      isShowModal,
+      formData,
+      type,
+      commentList,
+      isShowReply,
+      replyList,
+    } = this.state;
+    console.log(isShowReply);
     const { title, poster, content, image, createdAt } = topicDetail || {};
     return (
       <MineLayout activeTab="帖子详情">
@@ -170,6 +189,26 @@ class BBSDetail extends Component {
                 </div>
                 <div className="content">
                   <div>{(item || {}).content}</div>
+                  {isShowReply[index] ? (
+                    <div>
+                      {replyList[`${index}`].map((element, indexq) => (
+                        <div key={indexq}>{element.content}</div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div
+                      style={{
+                        color: '#2d64b3',
+                        marginTop: '10px',
+                        display: 'inline-block',
+                        cursor: 'pointer',
+                      }}
+                      onClick={this.showReply.bind(this, item, index)}
+                    >
+                      查看回复
+                      <Icon type="double-right" rotate={90} />
+                    </div>
+                  )}
                   <div className="yilou">
                     {index + 2}楼 {Util.getTime((item || {}).createdAt)}{' '}
                     <span className="reply" onClick={this.replay.bind(this, item)}>
