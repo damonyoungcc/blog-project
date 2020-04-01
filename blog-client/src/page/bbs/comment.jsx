@@ -29,14 +29,35 @@ class Comment extends Component {
           headers: { Authorization: `Bearer ${token}` },
         }).then((res) => {
           if (res) {
+            message.success(`${title}成功！`);
             onOk();
           }
         });
+      } else {
+        const { topicId, _id, commentator } = formData || {};
+        const { _id: commentatorId } = commentator || {};
+        const postParams = {
+          content: values.content,
+          topicId,
+          rootCommentId: _id,
+          replyTo: commentatorId,
+        };
+        Api.post(`/comment/${topicId}`, postParams, {
+          headers: { Authorization: `Bearer ${token}` },
+        }).then((res) => {
+          if (res) {
+            message.success(`${title}成功！`);
+            onOk();
+          }
+        });
+        console.log(postParams);
       }
     });
   };
   render() {
-    const { form, title, formData, onOk } = this.props;
+    const { form, title, formData } = this.props;
+    const { commentator } = formData || {};
+    const { nickName } = commentator || {};
     const { getFieldDecorator } = form;
     const formItemLayout = {
       labelCol: {
@@ -50,7 +71,7 @@ class Comment extends Component {
     };
     return (
       <Modal
-        title={`${title === '评论' ? `评论帖子【${formData.title}】` : '回复评论'}`}
+        title={`${title === '评论' ? `评论帖子【${formData.title}】` : `回复${nickName}】的评论`}`}
         cancelText="取消"
         okText="确定"
         visible={this.props.visible}

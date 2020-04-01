@@ -27,6 +27,7 @@ class BBSDetail extends Component {
     } = match || {};
     this.initTopic(id);
     this.initComment(id);
+    this.initReplyComment(id);
   }
   initTopic(id) {
     Api.get(`/topics/${id}`, { headers: { Authorization: `Bearer ${token}` } }).then((res) => {
@@ -42,12 +43,28 @@ class BBSDetail extends Component {
       });
     });
   }
+  initReplyComment(id) {
+    const rootCommentId = '5e843e67f567a73777fbc72a';
+    Api.get(`/comment/${id}/${rootCommentId}`, { headers: { Authorization: `Bearer ${token}` } }).then(
+      (res) => {
+        console.log(res.data);
+      },
+    );
+  }
 
   commentTopic(topicDetail) {
     this.setState({
       isShowModal: true,
       formData: topicDetail,
       type: '评论',
+    });
+  }
+
+  replay(item) {
+    this.setState({
+      isShowModal: true,
+      formData: item,
+      type: '回复',
     });
   }
 
@@ -62,6 +79,7 @@ class BBSDetail extends Component {
           params: { id },
         } = match || {};
         this.initComment(id);
+        this.initReplyComment(id);
       },
     );
   };
@@ -123,14 +141,42 @@ class BBSDetail extends Component {
                   alt=""
                 />
                 <div className="yilou">
-                  1楼 {Util.getTime(createdAt)} <span className="reply">回复</span>
+                  1楼 {Util.getTime(createdAt)}{' '}
+                  <span className="reply" onClick={this.commentTopic.bind(this, topicDetail)}>
+                    回复
+                  </span>
                 </div>
               </div>
             </div>
             {(commentList || []).map((item, index) => (
               <div className="topic-item-origin content-item" key={index}>
-                <div className="poster">111</div>
-                <div className="content">333</div>
+                <div className="poster">
+                  <Popover
+                    placement="left"
+                    content={
+                      <div>
+                        <p>学号：{((item || {}).commentator || {}).sid}</p>
+                      </div>
+                    }
+                    title={`用户名：${((item || {}).commentator || {}).nickName}`}
+                  >
+                    <div style={{ cursor: 'pointer' }}>
+                      <img style={{ width: '100px', marginTop: '30px' }} src={ImageIcon} alt="" />
+                      <div style={{ color: '#2d64b3', marginTop: '5px' }}>
+                        {((item || {}).commentator || {}).nickName}
+                      </div>
+                    </div>
+                  </Popover>
+                </div>
+                <div className="content">
+                  <div>{(item || {}).content}</div>
+                  <div className="yilou">
+                    {index + 2}楼 {Util.getTime((item || {}).createdAt)}{' '}
+                    <span className="reply" onClick={this.replay.bind(this, item)}>
+                      回复
+                    </span>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
