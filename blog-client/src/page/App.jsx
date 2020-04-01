@@ -27,7 +27,7 @@ class App extends React.Component {
             <PrivateRoute exact path="/" component={Home} />
             <PrivateRoute exact path="/bbs" component={BBS} />
             <PrivateRoute exact path="/bbs/:id" component={BBSDetail} />
-            <PrivateRoute exact path="/bbs/:id" component={NewsDetail} />
+            <PrivateRoute exact path="/news/:id" component={NewsDetail} />
             <PrivateRoute exact path="/mine" component={Mine} />
           </Switch>
         </Suspense>

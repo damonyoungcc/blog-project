@@ -94,7 +94,7 @@ class Blog extends Component {
               align: 'center',
               render: (row, item) => (
                 <Fragment>
-                  <Tooltip placement="top" title={'查看帖子详情'}>
+                  <Tooltip placement="top" title={'删除帖子'}>
                     <Icon
                       type="delete"
                       theme="twoTone"
