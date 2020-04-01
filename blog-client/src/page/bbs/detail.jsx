@@ -71,7 +71,6 @@ class BBSDetail extends Component {
           params: { id },
         } = match || {};
         this.initComment(id);
-        this.initReplyComment(id);
       },
     );
   };
@@ -104,7 +103,6 @@ class BBSDetail extends Component {
       isShowReply,
       replyList,
     } = this.state;
-    console.log(isShowReply);
     const { title, poster, content, image, createdAt } = topicDetail || {};
     return (
       <MineLayout activeTab="帖子详情">
@@ -192,7 +190,15 @@ class BBSDetail extends Component {
                   {isShowReply[index] ? (
                     <div>
                       {replyList[`${index}`].map((element, indexq) => (
-                        <div key={indexq}>{element.content}</div>
+                        <div key={indexq} style={{borderBottom:'1px soid #c1c1c1'}}>
+                          <span style={{ color: '#2d64b3', marginRight: '5px' }}>
+                            {element.commentator.nickName}：
+                          </span>
+                          <span>{element.content}</span>
+                          <span style={{ marginLeft: '5px' }}>
+                            {Util.getTime(element.createdAt)}
+                          </span>
+                        </div>
                       ))}
                     </div>
                   ) : (

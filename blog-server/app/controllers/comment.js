@@ -21,12 +21,14 @@ class CommentCtl {
   }
   async findById(ctx) {
     const { topicId } = ctx.params;
-    const comments = await Comment.find({ topicId, rootCommentId: null }).populate('commentator replyTo');
+    const comments = await Comment.find({ topicId, rootCommentId: null }).populate(
+      'commentator replyTo',
+    );
     ctx.body = comments;
   }
   async findReplyByCommentatorId(ctx) {
     const { topicId, rootCommentId } = ctx.params;
-    const comments = await Comment.find({ topicId, rootCommentId });
+    const comments = await Comment.find({ topicId, rootCommentId }).populate('commentator replyTo');
     ctx.body = comments;
   }
 }
