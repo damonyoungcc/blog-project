@@ -47,10 +47,10 @@ class BBS extends React.Component {
             <div>群组</div>
           </div>
           <div className="topics-content">
-            {(topicsList || []).map((item) => (
+            {(topicsList || []).map((item, index) => (
               <div key={item._id} className="topics-item">
                 <div className="comment">
-                  <div className="comment-wrapper">{(item || {}).commentNum || '187'}</div>
+                  <div className="comment-wrapper">{index + 1}</div>
                 </div>
                 <div className="title">
                   <div>
