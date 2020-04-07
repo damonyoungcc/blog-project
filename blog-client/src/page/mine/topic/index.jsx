@@ -46,7 +46,7 @@ class Topics extends Component {
         isShowModal: false,
       },
       () => {
-        this.initNews();
+        this.initTopics();
       },
     );
   };
